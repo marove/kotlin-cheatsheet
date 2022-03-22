@@ -1,0 +1,34 @@
+
+  INSTALACIÓN
+  
+    - REQUISITOS -> tener instalado la JDK de Java.
+
+    - OPCION A - Compilador de consola de comandos
+
+        1 - Instalar mediante cualquier opción de la documentación oficial: 
+        
+              1.A) sdkman
+
+                        $ sdk install kotlin
+
+
+              2.B) paquete snap
+
+                        $ sudo snap install --classic kotlin 
+
+        2 - Verificar instalación:
+        
+              $ kotlinc
+
+        3 - Compilar un programa kotlin (.kt->.class):
+
+              $ kotlinc <nombre-fichero>.kt
+
+        4 - Ejecutar un programa kotlin compilado (.class):
+
+              $ kotlin <nombre-fichero-compilado>
+
+   - OPCION B - IntelliJ IDE
+
+        1 - File > New Project > Kotlin > Kotlin/JVM
+ 
