@@ -1,148 +1,151 @@
 
 // HERENCIA
 
-	// la clase que hereda de otra se llama: clase hija, clase derivada o sub-clase
-	// la clase cuyas características son heredadas se llama: clase padre, clase base o super-clase.
+	// La clase que hereda de otra se llama: clase hija, clase derivada o sub-clase.
+	// La clase cuyas características son heredadas se llama: clase padre, clase base o super-clase.
 
-	// todas las clase en Kotlin tiene una clase base llamada 'Any' -> se correspondería a la clase 'Object' de Java
+	// Todas las clase en Kotlin tienen una clase padre llamada 'Any' -> se correspondería a la clase 'Object' de Java
 		
-       class Person	// toda clase creada en Kotlin por tanto hereda implícitamente de la super-clase 'Any':
+       	class Person	// toda clase creada en Kotlin por tanto hereda implícitamente de la super-clase 'Any':
 	
-	// la clase Any contiene tres métodos llamados 'equals()', 'hashCode()', y 'toString()', pudiendo cualquier clase de
-	// proveer de su propia implementación
+	// La clase Any contiene tres métodos llamados 'equals()', 'hashCode()', y 'toString()', y todas las clases de
+	// Kotlin heredan dichos métodos pudiendo sobreescribirlos con su propia implementación.
 
+	// CREANDO CLASES PADRES E HIJAS
 
-	  // CREANDO CLASES PADRES E HIJAS
-
-		  // así se declara una clase padre y una clase hija en Kotlin:	
+		// Así se declara una clase padre y una clase hija en Kotlin:
 			  
-          open class Computer {	// super-clase
-			    }
-
-
-			class Laptop: Computer() {	// sub-clase
+			open class Computer {		// clase padre -> tiene la palabra clave open dado que las clases son finales por defecto en Kotlin
 			}
 
-		// la clase hija tiene la responsabilidad de inicializar la clase padre -> si la clase hija tiene un constructor
-		// primario -> entonces debe inicializarse la clase padre justo en el encabezado de la clase con los parámetros
-		// pasados a su constructor primario:
-			// clase padre
-			open class Computer(val name: String,
-								val brand: String) {
+			class Laptop: Computer() {  // clase hija
 			}
 
-			// clase hija (inicializa la clase padre)
-			class Laptop(name: String, 
-						 brand: String, 
-						 val batteryLife: Double) : Computer(name, brand) {
+		// La clase hija tiene la responsabilidad de inicializar la clase padre
 
-			}
+			// SI LA CLASE HIJA TIENE UN CONSTRUCTOR PRIMARIO -> entonces debe inicializarse la clase padre justo en el
+			// encabezado de la clase con los parámetros pasados a su constructor primario:
 
-		// si la clase hija no tiene un constructor primario, entonces todos sus constructores secundarios tienen que
-		// inicializar la clase padre, ya sea llamando a la palabra clase 'super' o sino delegando a otro constructor
-		// primario o secundario que lo haga:
-			class Laptop : Computer {
-				
-				val batteryLife: Double
+				// clase padre
+				open class Computer(val name: String,
+									val brand: String) {
+					}
 
-				// llama a super() para inicializar la clase padre
-				constructor(name: String, brand: String, batteryLife: Double): super(name, brand) {
-					this.batteryLife = batteryLife
+				// clase hija (inicializa la clase padre)
+				class Laptop(name: String,
+							 brand: String,
+							 val batteryLife: Double) : Computer(name, brand) {
 				}
 
-				// llama a otro constructor (el cuál llama a super())
-				constructor(name: String, brand: String): this(name, brand, 0.0) {
+			// SI LA CLASE HIJA NO TIENE UN CONSTRUCTOR PRIMARIO -> entonces todos sus constructores secundarios tienen
+			// que inicializar la clase padre, ya sea llamando a la palabra clase 'super' o sino delegando a otro
+			// constructor primario o secundario que lo haga:
 
+				class Laptop : Computer {
+
+					val batteryLife: Double
+
+					// llama a super() para inicializar la clase padre
+					constructor(name: String, brand: String, batteryLife: Double): super(name, brand) {
+						this.batteryLife = batteryLife
+					}
+
+					// llama a otro constructor (el cuál llama a super())
+					constructor(name: String, brand: String): this(name, brand, 0.0) {
+
+					}
 				}
-			}
-		// sólo hay que tener en cuenta que la clase padre necesita ser inicializada -> no importa cuál de sus constructores
-		// se utilice para inicializarlo
+
+				// Sólo hay que tener en cuenta que la clase padre necesita ser inicializada -> no importa cuál de sus
+				// constructores se utilice para inicializarlo.
 
 
 	// EJEMPLO DE HERENCIA CON PROPIEDADES Y MÉTODOS DE CLASE
 
-		// se trata de una aplicación de banca donde la gente tiene distintos tipos de cuentas bancarias como SavingsAccount,
-		// CurrentAccount, etc.
+		// Se trata de una aplicación de banca donde la gente tiene distintos tipos de cuentas bancarias como
+		// SavingsAccount, CurrentAccount, etc.
 
-		// tiene sentido crear una clase padre llamada 'BankAccount' y que clases com 'SavingsAccount' y 
+		// Tiene sentido crear una clase padre llamada 'BankAccount' y que clases com 'SavingsAccount' y
 		// 'CurrentAccount' hereden de ella:
 
-			/**
-			 * BankAccount (Base Class)
-			 * @property accountNumber - Account Number (read-only)
-			 * @property accountName -  Account Name (read-only)
-			 * @property balance - Current Balance (Mutable)
-			 */
+				/**
+				 * BankAccount (Base Class)
+				 * @property accountNumber - Account Number (read-only)
+				 * @property accountName -  Account Name (read-only)
+				 * @property balance - Current Balance (Mutable)
+				 */
 
-			open class BankAccount(val accountNumber: String, val accountName: String) {
-				var balance : Double = 0.0
+				open class BankAccount(val accountNumber: String, val accountName: String) {
 
-				fun depositeMoney(amount: Double): Boolean {
-					if(amount > 0) {
-						balance += amount
-						return true
-					} else {
-						return false
+					var balance : Double = 0.0
+
+					fun depositeMoney(amount: Double): Boolean {
+						if(amount > 0) {
+							balance += amount
+							return true
+						} else {
+							return false
+						}
 					}
+
+					fun withdrawMoney(amount: Double): Boolean {
+						if(amount > balance) {
+							return false
+						} else {
+							balance -= amount
+							return true
+						}
+					}
+
 				}
 
-				fun withdrawMoney(amount: Double): Boolean {
-					if(amount > balance) {
-						return false
-					} else {
-						balance -= amount
-						return true
-					}
-				}
-
-			}
-
-		// la clase 'SavingsAccount' (cuenta de ahorros) es ima cuenta bancaria con alguna tasa de interés sobre el monto
+		// La clase 'SavingsAccount' (cuenta de ahorros) es una cuenta bancaria con alguna tasa de interés sobre el monto
 		// del saldo:
 
-			/**
-			 * SavingsAccount (Derived Class)
-			 * @property interestRate - Interest Rate for SavingsAccount (read-only)
-			 * @constructor - Primary constructor for creating a Savings Account
-			 * @param accountNumber - Account Number (used to initialize BankAccount)
-			 * @param accountName - Account Name (used to initialize BankAccount)
-			 */
+				/**
+				 * SavingsAccount (Derived Class)
+				 * @property interestRate - Interest Rate for SavingsAccount (read-only)
+				 * @constructor - Primary constructor for creating a Savings Account
+				 * @param accountNumber - Account Number (used to initialize BankAccount)
+				 * @param accountName - Account Name (used to initialize BankAccount)
+				 */
 
-			class SavingsAccount (accountNumber: String, accountName: String, val interestRate: Double) :
-					BankAccount(accountNumber, accountName) {
+				class SavingsAccount(accountNumber: String, accountName: String, val interestRate: Double) : BankAccount(accountNumber, accountName) {
 
-				fun depositInterest() {
-					val interest = balance * interestRate / 100
-					this.depositeMoney(interest);
+					fun depositInterest() {
+						val interest = balance * interestRate / 100
+						this.depositeMoney(interest);
+					}
 				}
-			}
-			// la clase SavingsAccount está herendando de la clase padre:
-				// atributos -> accountNumber, accountName, balance
-				// métodos -> depositMoney, withdrawMoney
+				// la clase SavingsAccount está herendando de la clase padre:
+					// atributos -> accountNumber, accountName, balance
+					// métodos -> depositMoney, withdrawMoney
 
-		// testeo de las clases:
-			fun main(args: Array<String>) {
-				
-				// crea una cuenta de ahorro con un interés del 6%
-				val savingsAccount = SavingsAccount("64524627", "Rajeev Kumar Singh", 6.0)
+		// Testeo de las clases:
 
-				savingsAccount.depositeMoney(1000.0)
+				fun main(args: Array<String>) {
 
-				savingsAccount.depositInterest()
+					// crea una cuenta de ahorro con un interés del 6%
+					val savingsAccount = SavingsAccount("64524627", "Rajeev Kumar Singh", 6.0)
 
-				println("Current Balance = ${savingsAccount.balance}")
-			}
+					savingsAccount.depositeMoney(1000.0)
+
+					savingsAccount.depositInterest()
+
+					println("Current Balance = ${savingsAccount.balance}")
+				}
 
 
 	// SOBREESCRIBIENDO MÉTODOS DE CLASE
 
-		// al igual que con las clases, los métodos de una clase Kotlin también son finales por defecto -> para permitir que
-		// una función de miembro sea anulada, es necesario marcarla con el modificador abierto
+		// Al igual que con las clases, los métodos de una clase Kotlin también son finales por defecto -> para permitir
+		// que una función de miembro sea anulada, es necesario marcarla con el modificador open
 
-		// además, la clase hija que sobreescribe un método de una clase padre debe usar el modificador 'override' -> sino el
-		// compilador generará un error
+		// Además, la clase hija que sobreescribe un método de una clase padre debe usar el modificador 'override' ->
+		// sino el compilador generará un error
 
-		// ejemplo:
+		// Ejemplo:
+
 			open class Teacher {
 				// debe usar el modificador 'open' para permitir a una clase sobreescribir éste método
 				open fun teach() {
@@ -165,27 +168,27 @@
 				mathsTeacher.teach() // Teaching Maths..
 			}
 
-		// POLIMORFISMO DINÁMICO
+	// POLIMORFISMO DINÁMICO
 
-			// existen dos tipos de polimorfismo en la programación oritentada a objetos:
+		// Existen dos tipos de polimorfismo en la programación oritentada a objetos:
 				
-				// A - polimorfismo estático -> en tiempo de compilación
+			// A - Polimorfismo estático -> en tiempo de compilación
 
-					// ocurre cuando defines múltiples métodos sobreescritos con el mismo nombre pero diferentes firmas
+				// Ocurre cuando defines múltiples métodos sobreescritos con el mismo nombre pero diferentes firmas.
 
-					// se llama polimorfismo en tiempo de compilación porque el compilador puede decidir a qué método
-					// llamar al compilar
+				// Se llama polimorfismo en tiempo de compilación porque el compilador puede decidir a qué método
+				// llamar al compilar.
 
-				// B - polimorfismo dinámico -> en tiempo de ejecución
+			// B - Polimorfismo dinámico -> en tiempo de ejecución
 
-					// ocurre en caso de sobreescritura de método
+				// Ocurre en caso de sobreescritura de método.
 
-					// en éste caso, la función que se llama se decide en tiempo de ejecución
+				// En éste caso, la función que se llama se decide en tiempo de ejecución.
 
-			// ejemplo:
+		// Ejemplo de polimorfismo dinámico:
 
 				fun main(args: Array<String>) {
-					
+
 					val teacher1: Teacher = Teacher()  		// Teacher referencia a Teacher y es objeto Teacher
 					val teacher2: Teacher = MathsTeacher() 	// Teacher referencia a Teacher pero es objeto MathsTeacher
 
@@ -194,16 +197,81 @@
 				}
 
 
+	// SOBREESCRIBIENDO PROPIEDADES
 
+		// Al igual que las funciones, también se pueden sobreescribir las propiedades de una superclase. Para
+		// permitir que las clases hijas sobrescriban una propiedad de una clase padre, debe anotarlas con el
+		// modificador open.
 
+		// Además, la clase hija debe utilizar la palabra clave override para anular una propiedad de una clase padre.
 
+		// FORMA A - convencional:
 
+				open class Employee {
+					// usa el modificador "open" para permitir a las clases hijas sobreescribir ésta propiedad
+					open val baseSalary: Double = 30000.0
+				}
 
+				class Programmer : Employee() {
+					// usa el modificador "override" para sobreescribir la propiedad de la clase padre
+					override val baseSalary: Double = 50000.0
+				}
 
+				fun main(args: Array<String>) {
+					val employee = Employee()
+					println(employee.baseSalary) 	// 30000.0
 
+					val programmer = Programmer()
+					println(programmer.baseSalary) 	// 50000.0
+				}
 
+		// FORMA B - sobreescribiendo las propiedades con getters y setters personalizados:
 
+			// Puedes sobreescribir una propiedad de la superclase usando un inicializador o usando un getter/setter
+			// personalizado.
 
+			// Ejemplo:
 
+					open class Person {
+						open var age: Int = 1
+					}
 
+					class CheckedPerson: Person() {
+						override var age: Int = 1
+							set(value) {
+								field = if (value > 0) value else throw IllegalArgumentException("Age can not be negative")
+							}
+					}
 
+					fun main(args: Array<String>) {
+						val person = Person()
+						person.age = -5 // funciona
+
+						val checkedPerson = CheckedPerson()
+						checkedPerson.age = -5  // lanza IllegalArgumentException: Age can not be negative
+					}
+
+	// LLAMADAS A PROPIEDADS Y MÉTODOS DE LA SUPER CLASE
+
+		// Puedes acceder a las propiedades y funciones de la superclase utilizando la palabra clave super().
+
+		// Ejemplo:
+
+				open class Employee {
+
+					open val baseSalary: Double = 10000.0
+
+					open fun displayDetails() {
+						println("I am an Employee")
+					}
+				}
+
+				class Developer: Employee() {
+
+					override var baseSalary: Double = super.baseSalary + 10000.0
+
+					override fun displayDetails() {
+						super.displayDetails()
+						println("I am a Developer")
+					}
+				}
