@@ -247,10 +247,33 @@
 
   // iteración sobre un rango:
   
-        for (value in 1..10) {
-              print("$value ")
-          }
-        // output: 1 2 3 4 5 6 7 8 9 10
+        // rango numérico
+
+            for (value in 1..10) {
+                print("$value ")
+            }
+            // output: 1 2 3 4 5 6 7 8 9 10
+
+        // rango numérico incremental en mas de una unidad -> múltiplos
+
+            for (value in 3..6 step 2) {
+                print("$value ")
+            }
+            // output: 5 4 3 2 1         
+
+        // rango numérico decremental
+
+            for (value in 5 down to 1) {
+                print("$value ")
+            }
+            // output: 3 5   
+
+        // rango alfabético
+
+            for (value in 'b'..'g') {
+                print("$value ")
+            }
+            // output: b c d e f g
 
   // iteración sobre un array:
   
@@ -278,7 +301,6 @@
           // PrimeNumber(3): 5
           // PrimeNumber(4): 7
           // PrimeNumber(5): 11
-
 
     // iteración sobre un array usando la función 'withIndex()'
     
