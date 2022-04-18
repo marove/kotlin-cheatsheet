@@ -1,0 +1,47 @@
+
+// VARIABLES
+
+
+  // Se refieren a una ubicación de memoria que almacena algunos datos.
+
+  // Tienen un nombre y un tipo asociado.
+
+  // El tipo de una variable define el rango de valores que la variable puede contener, y las operaciones que se pueden
+  // realizar sobre esos valores.
+
+  // Se Puede declarar una variable en Kotlin utilizando palabras clave var y val.
+
+  // VAL
+
+    // Una variable declarada utilizando la palabra clave val es inmutable -> es de sólo lectura, es decir no se puede
+    // reasignar después de que se inicialice:
+    
+      val name = "Bill Gates"
+      name = "Satoshi Nakamoto"	// Error: Val cannot be reassigned 
+
+  // VAR
+
+    // Para declarar una variable mutable, es decir que pueda reasignarse después, se usa la palabra clave var:
+    
+      var country = "USA"
+      country = "India"    // funciona
+
+
+// INFERENCIA DE TIPOS
+
+  // Aunque Kotlin es un lenguaje tipado estáticamente, no requiere que especifique explícitamente el tipo de cada
+  // variable que declare. Puedes inferir el tipo de una variable a partir de la expresión inicializadora de la variable:
+  
+      val greeting = "Hello, World"  // tipo inferido como `String`
+      val year = 2018                // tipo inferido como `Int`
+
+  // La declaración de tipo es obligatoria si no está inicializando la variable en el momento de la declaración.
+  
+      var language   // Error: The variable must either have a Type annotation or be initialized
+      language =  "French"
+
+      var language: String   // funciona
+      language = "French"
+
+
+

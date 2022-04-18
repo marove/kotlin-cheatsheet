@@ -1,0 +1,63 @@
+
+INTRODUCCIÓN
+
+  QUÉ ES
+
+    - Es un lenguaje de programación desarrollado por JetBrains.
+
+    - Corre sobre la máquina virtual Java (JVM), y puede ser compilado además a JavaScript y código máquina.
+
+
+  CARACTERISTICAS
+
+    - Es gratuito y open-source -> tanto el lenguaje como el compilador, las librerías y las herramientas de desarrollo
+      bajo licencia Apache 2, estando alojado el proyecto completo en GitHub.
+
+    - Es moderno, potente y flexible.
+
+    - Es multiplataforma -> se puede usar para construir aplicaciones para diversas plataformas:
+
+        + Android -> tiene soporte oficial para Kotlin
+        + Entorno servidor -> soportado por Spring 5.
+        + Escritorio
+        + Entorno cliente -> compilable a JavaScript.
+        + Entorno máquina -> compilable a código máquina
+
+    - Es 100% interoperable con Java -> Se puede acceder fácilmente al código Java y viceversa, pudiéndose usar ambos
+      lenguajes en un mismo proyecto sin problema -> ésto permite una fácil adopción de Kotlin en lenguajes existentes
+      de Java.
+
+    - Puede utilizar programación orientada a objetos y programación funcional, lo que ofrece lo mejor de los dos mundos.
+
+	- Es de tipado estático -> el tipo de cada variable y expresión es conocido en tiempo de compilación -> por tanto el
+      compilador puede validarlos y hace que se detecte los errores en tiempo de compilación y no ejecución. 
+
+    - Provee inferencia tipográfica -> aún siendo fuertemente tipado no es obligatorio en la mayoría de los casos
+      especificar explícitamente el tipo, puesto que el compilador puede inferirlo por tí mismo.
+
+    - Es conciso y expresivo -> se escribe más con menos código, pudiendo realizar tareas comunes en una sóla línea, proporcionando expresiones ricas para realizar
+      tareas comunes y por tanto reduciendo drásticamente la cantidad de código boilerplate.
+      Por ejemplo, puede crear una clase POJO con métodos getters, setters, equals(), hashCode() y toString() en una
+      sola línea.
+
+    - Es explícito -> hará/permitirá cosas sólo si le dices que lo haga. Ser explícito significa ser específico sobre
+      sus elecciones de diseño y no ocultar nada a los lectores o consumidores de su código.
+      Ejemplos de explicitud en Kotlin:
+
+        + Kotlin no permite conversiones implícitas de tipo, por ejemplo, int a long, o float a double. Proporciona 
+          métodos como toLong() y toDouble() para hacerlo explícitamente.
+
+        + Todas las clases de Kotlin son finales (no heredables) por defecto. Es necesario marcar explícitamente
+          una clase como abierta para permitir que otras clases hereden de ella.
+          Del mismo modo, todos los atributos y funciones de los miembros de una clase son también finales por defecto -> se
+          debe marcar explícitamente una función o atributo como abiertos para permitir que las clases hijas los sustituyan.
+
+        + Si está anulando una función o propiedad de la clase padre, entonces necesita anotarla explícitamente con el
+          modificador de anulación.
+
+    - Es seguro y fiable -> elimina virtualmente errores que ocurren regularmente en otros lenguajes de programación 
+      (como de nulabilidad), lo que disminuye los bugs.
+
+    - Es fácil de aprender -> tiene una curva de aprendizaje baja si se conoce Java u otro cualquier lenguaje orientado
+      a objetos.
+
