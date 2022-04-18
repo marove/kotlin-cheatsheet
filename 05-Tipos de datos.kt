@@ -11,6 +11,8 @@
   // Kotlin puede representar algunos de los tipos básicos como números, caracteres y booleanos como valores primitivos en
   // tiempo de ejecución para mejorar el rendimiento, pero para los usuarios finales, todos ellos son objetos.
 
+  // Todos los tipos de Kotlin heredan del tipo Any.
+
 
   // TIPOS DE DATOS NUMÉRICOS
 
@@ -35,7 +37,7 @@
       val myLong = 1000L    // El sufijo 'L' es usado específicmante a un valor 'long'
 
       val myFloat = 126.78f   // El sufijo 'f' o 'F' representa un 'Float' 
-      val myDouble = 325.49
+      val myDouble = 325.49   // Es tipo Double por defecto cualquier valor decimal si no se especifica con f de Float
 
    
       // también se puede utilizar el guión bajo en los valores numéricos grandes para hacerlos más legibles:
@@ -80,7 +82,8 @@
       // representa una cadena de caracteres
 
       // se puede declarar así:
-      var myStr = "Hello, Kotlin"
+      var myStr: String = "Hello, Kotlin"
+      var myStr = "Hello, Kotlin" // con las comillas asume que es un String por defecto y no hace falta una declaración explícita
 
       // string template -> introduce variables dentro de un string
 
@@ -112,7 +115,7 @@
 
 
     // Sin embargo, cada tipo de número contiene funciones de ayuda que se pueden utilizar para convertir explícitamente
-    // un tipo a otro. Las siguientes funciones de ayuda son soportadas para la conversión de tipos entre tipos numéricos:
+    // un tipo a otro. Las siguientes funciones de ayuda son soportadas para la conversión de tipos entre tipos:
 
       + toByte()
       + toShort()
@@ -121,6 +124,8 @@
       + toFLoat()
       + toDouble()
       + toChar()
+      + toBoolean()
+      + toString()
 
     // Ejemplos de conversión de tipos explícita:
 

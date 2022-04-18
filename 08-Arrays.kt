@@ -54,7 +54,7 @@
 
               var mySquareArray = Array(5, {i -> i * i})	// [0, 1, 4, 9, 16]
               
-              var myDoubledArray = Array(5, {it * 2)	      // [0, 2, 4, 6, 8]
+              var myDoubledArray = Array(5, {it * 2})	    // [0, 2, 4, 6, 8]
 
 
   // ACCESO Y MODIFICACION:
