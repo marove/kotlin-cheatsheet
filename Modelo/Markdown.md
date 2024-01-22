@@ -13,6 +13,11 @@ This is a paragraph.
 
 This is another paragraph.
 
+## SALTOS DE LÍNEA
+
+This is a line.  
+This is another line.
+
 ## FORMATEO DE TEXTO
 
 **Bold text**
