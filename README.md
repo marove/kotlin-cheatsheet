@@ -1,2 +1,2 @@
 # Kotlin cheatsheet
-Kotlin programming language cheatsheet for consultation purposes.
+Cheatsheet para el lenguaje de programación Kotlin.
