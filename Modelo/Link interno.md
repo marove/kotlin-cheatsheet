@@ -1,1 +1,0 @@
-Esto es una nota enlazada internamente desde **Markdown Básico.md**
